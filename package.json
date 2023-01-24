@@ -1,0 +1,61 @@
+{
+  "name": "spectral-redos-detector-ruleset",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/ruleset.js",
+  "module": "dist/ruleset.mjs",
+  "type": "commonjs",
+  "exports": {
+    ".": {
+      "types": "./dist/ruleset.d.ts",
+      "import": "./dist/ruleset.mjs",
+      "require": "./dist/ruleset.js"
+    }
+  },
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "build": "tsup",
+    "type-check": "tsc --noEmit --noErrorTruncation --pretty false --incremental false",
+    "test": "jest"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@sindresorhus/tsconfig": "^3.0.1",
+    "@stoplight/types": "^13.8.0",
+    "@types/jest": "^28.1.8",
+    "jest": "^28.1.3",
+    "ts-jest": "^28.0",
+    "tsup": "^6.5.0"
+  },
+  "dependencies": {
+    "@stoplight/spectral-formats": "^1.4.0",
+    "@stoplight/spectral-functions": "^1.7.2",
+    "redos-detector": "^3.2.1",
+    "typescript": "^4.9.4"
+  },
+  "tsup": {
+    "entry": [
+      "src/ruleset.ts"
+    ],
+    "clean": true,
+    "dts": true,
+    "format": [
+      "cjs",
+      "esm"
+    ],
+    "sourcemap": true,
+    "noExternal": [
+      "@stoplight/types"
+    ],
+    "external": [
+      "redos-detector",
+      "typescript"
+    ],
+    "footer": {
+      "js": "module.exports = module.exports.default;"
+    }
+  }
+}
