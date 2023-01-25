@@ -48,10 +48,10 @@
     ],
     "sourcemap": true,
     "noExternal": [
-      "@stoplight/types"
+      "@stoplight/types",
+      "redos-detector"
     ],
     "external": [
-      "redos-detector",
       "typescript"
     ],
     "footer": {
