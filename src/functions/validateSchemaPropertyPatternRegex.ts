@@ -5,7 +5,7 @@ const validateSchemaPropertyPatternRegex = (param: any): any => {
       if (!isSafe(new RegExp(`${value}`)).safe) {
         return [
           {
-            message: `${value} This pattern is not safe from ReDoS attacks. There may be infinite backtracks possible in the worst case.`,
+            message: `${value} This pattern is not safe from ReDoS attacks.`,
           }
         ]
       }

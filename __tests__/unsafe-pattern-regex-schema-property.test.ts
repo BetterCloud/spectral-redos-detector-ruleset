@@ -12,7 +12,6 @@ testRule("unsafe-pattern-regex-schema-property", [
           pet: {
             properties: {
               name: "name",
-              in: "path",
               required: true,
               schema: {
                 type: "string",
@@ -26,15 +25,15 @@ testRule("unsafe-pattern-regex-schema-property", [
     errors: [
       {
         code: "unsafe-pattern-regex-schema-property",
-        message: "^([a-b]*)([a-c]*)$ This pattern is not safe from ReDoS attacks. There may be infinite backtracks possible in the worst case.",
+        message: "^([a-b]*)([a-c]*)$ This pattern is not safe from ReDoS attacks.",
         path: ["components", "schemas", "pet", "properties", "schema"],
         range: {
           end: {
-            "character": 188,
+            "character": 176,
             "line": 0,
           },
           start: {
-            "character": 141,
+            "character": 129,
             "line": 0,
           },
         },
