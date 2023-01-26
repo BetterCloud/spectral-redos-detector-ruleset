@@ -1,7 +1,8 @@
+import isNil = require("lodash/fp/isNil");
 import checkForRedosError from '../shared/checkForRedosError';
 
 const validateSchemaPropertyPatternRegex = (param: any): any => {
-  if (param.pattern !== undefined || null) {
+  if (!isNil(param.pattern)) {
     return checkForRedosError(param.pattern)
   }
 }

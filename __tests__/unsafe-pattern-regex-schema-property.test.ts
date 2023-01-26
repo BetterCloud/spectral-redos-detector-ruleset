@@ -9,7 +9,7 @@ testRule("unsafe-pattern-regex-schema-property", [
       info: { version: "1.0" },
       components: {
         schemas: {
-          pet: {
+          Pet: {
             properties: {
               name: "name",
               required: true,
@@ -26,7 +26,7 @@ testRule("unsafe-pattern-regex-schema-property", [
       {
         code: "unsafe-pattern-regex-schema-property",
         message: "^([a-b]*)([a-c]*)$ This pattern is not safe from ReDoS attacks.",
-        path: ["components", "schemas", "pet", "properties", "schema"],
+        path: ["components", "schemas", "Pet", "properties", "schema"],
         range: {
           end: {
             "character": 176,
