@@ -1,15 +1,8 @@
-import { isSafe } from 'redos-detector';
+import checkForRedosError from '../shared/checkForRedosError';
+
 const validateSchemaPropertyPatternRegex = (param: any): any => {
-  for (const [key, value] of Object.entries(param)) {
-    if (key.toLowerCase().includes('pattern')) {
-      if (!isSafe(new RegExp(`${value}`)).safe) {
-        return [
-          {
-            message: `${value} This pattern is not safe from ReDoS attacks.`,
-          }
-        ]
-      }
-    }
+  if (param.pattern !== undefined || null) {
+    return checkForRedosError(param.pattern)
   }
 }
 
