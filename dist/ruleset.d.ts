@@ -29,6 +29,15 @@ declare const _default: {
                 function: (param: any) => any;
             };
         };
+        "unsafe-pattern-regex-path-parameter-property": {
+            description: string;
+            given: string;
+            message: string;
+            severity: DiagnosticSeverity;
+            then: {
+                function: (param: any) => any;
+            };
+        };
     };
 };
 
