@@ -1,7 +1,7 @@
 import { DiagnosticSeverity } from "@stoplight/types";
 import testRule from "./__helpers__/helper";
 
-testRule("unsafe-pattern-regex-schema-array-property", [
+testRule("unsafe-pattern-regex-components-schema-array-property", [
   {
     name: "invalid case",
     document: {

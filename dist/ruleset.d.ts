@@ -2,7 +2,7 @@ import { DiagnosticSeverity } from '@stoplight/types';
 
 declare const _default: {
     rules: {
-        "unsafe-pattern-regex-schema-property": {
+        "unsafe-pattern-regex-components-schema-property": {
             description: string;
             given: string;
             message: string;
@@ -11,7 +11,7 @@ declare const _default: {
                 function: (param: any) => any;
             };
         };
-        "unsafe-pattern-regex-schema-array-property": {
+        "unsafe-pattern-regex-components-schema-array-property": {
             description: string;
             given: string;
             message: string;

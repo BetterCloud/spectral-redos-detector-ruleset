@@ -3,8 +3,8 @@ import validateSchemaArrayPropertyPatternRegex from "./functions/validateSchemaA
 import { DiagnosticSeverity } from "@stoplight/types";
 export default {
     rules: {
-        "unsafe-pattern-regex-schema-property": {
-            description: "Regex patterns for schema properties must be safe",
+        "unsafe-pattern-regex-components-schema-property": {
+            description: "Check for possible ReDos regex patterns in components schemas properties",
             given: '$.components.schemas..properties[*]',
             message: '{{error}}',
             severity: DiagnosticSeverity.Error,
@@ -12,8 +12,8 @@ export default {
                 function: validateSchemaPropertyPatternRegex
             }
         },
-        "unsafe-pattern-regex-schema-array-property": {
-            description: "Regex patterns for schema array properties must be safe",
+        "unsafe-pattern-regex-components-schema-array-property": {
+            description: "Check for possible ReDos regex patterns in components schemas with array properties",
             given: '$.components.schemas..properties[*]',
             message: '{{error}}',
             severity: DiagnosticSeverity.Error,
@@ -22,7 +22,7 @@ export default {
             }
         },
         "unsafe-pattern-regex-components-headers-property": {
-            description: "Check regex patterns in components headers schemas",
+            description: "Check for possible ReDos regex patterns in components headers schemas",
             given: '$.components.headers..schema',
             message: '{{error}}',
             severity: DiagnosticSeverity.Error,

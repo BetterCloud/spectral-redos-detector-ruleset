@@ -1,7 +1,7 @@
 import { DiagnosticSeverity } from "@stoplight/types";
 import testRule from "./__helpers__/helper";
 
-testRule("unsafe-pattern-regex-schema-property", [
+testRule("unsafe-pattern-regex-components-schema-property", [
   {
     name: "invalid case",
     document: {
@@ -24,7 +24,7 @@ testRule("unsafe-pattern-regex-schema-property", [
     },
     errors: [
       {
-        code: "unsafe-pattern-regex-schema-property",
+        code: "unsafe-pattern-regex-components-schema-property",
         message: "^([a-b]*)([a-c]*)$ This pattern is not safe from ReDoS attacks.",
         path: ["components", "schemas", "Pet", "properties", "schema"],
         range: {
