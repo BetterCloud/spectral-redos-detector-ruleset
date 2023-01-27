@@ -4405,11 +4405,11 @@ var require_baseGet = __commonJS({
 var require_get = __commonJS({
   "node_modules/lodash/get.js"(exports, module2) {
     var baseGet = require_baseGet();
-    function get2(object, path, defaultValue) {
+    function get(object, path, defaultValue) {
       var result = object == null ? void 0 : baseGet(object, path);
       return result === void 0 ? defaultValue : result;
     }
-    module2.exports = get2;
+    module2.exports = get;
   }
 });
 
@@ -4468,7 +4468,7 @@ var require_hasIn = __commonJS({
 var require_baseMatchesProperty = __commonJS({
   "node_modules/lodash/_baseMatchesProperty.js"(exports, module2) {
     var baseIsEqual = require_baseIsEqual();
-    var get2 = require_get();
+    var get = require_get();
     var hasIn = require_hasIn();
     var isKey = require_isKey();
     var isStrictComparable = require_isStrictComparable();
@@ -4481,7 +4481,7 @@ var require_baseMatchesProperty = __commonJS({
         return matchesStrictComparable(toKey(path), srcValue);
       }
       return function(object) {
-        var objValue = get2(object, path);
+        var objValue = get(object, path);
         return objValue === void 0 && objValue === srcValue ? hasIn(object, path) : baseIsEqual(srcValue, objValue, COMPARE_PARTIAL_FLAG | COMPARE_UNORDERED_FLAG);
       };
     }
@@ -4726,10 +4726,10 @@ var require_convert = __commonJS({
 // node_modules/lodash/isNil.js
 var require_isNil = __commonJS({
   "node_modules/lodash/isNil.js"(exports, module2) {
-    function isNil3(value) {
+    function isNil2(value) {
       return value == null;
     }
-    module2.exports = isNil3;
+    module2.exports = isNil2;
   }
 });
 
@@ -4751,89 +4751,6 @@ var require_isNil2 = __commonJS({
   "node_modules/lodash/fp/isNil.js"(exports, module2) {
     var convert = require_convert();
     var func = convert("isNil", require_isNil(), require_falseOptions());
-    func.placeholder = require_placeholder();
-    module2.exports = func;
-  }
-});
-
-// node_modules/lodash/_createBaseFor.js
-var require_createBaseFor = __commonJS({
-  "node_modules/lodash/_createBaseFor.js"(exports, module2) {
-    function createBaseFor(fromRight) {
-      return function(object, iteratee, keysFunc) {
-        var index = -1, iterable = Object(object), props = keysFunc(object), length = props.length;
-        while (length--) {
-          var key = props[fromRight ? length : ++index];
-          if (iteratee(iterable[key], key, iterable) === false) {
-            break;
-          }
-        }
-        return object;
-      };
-    }
-    module2.exports = createBaseFor;
-  }
-});
-
-// node_modules/lodash/_baseFor.js
-var require_baseFor = __commonJS({
-  "node_modules/lodash/_baseFor.js"(exports, module2) {
-    var createBaseFor = require_createBaseFor();
-    var baseFor = createBaseFor();
-    module2.exports = baseFor;
-  }
-});
-
-// node_modules/lodash/_baseForOwn.js
-var require_baseForOwn = __commonJS({
-  "node_modules/lodash/_baseForOwn.js"(exports, module2) {
-    var baseFor = require_baseFor();
-    var keys = require_keys();
-    function baseForOwn(object, iteratee) {
-      return object && baseFor(object, iteratee, keys);
-    }
-    module2.exports = baseForOwn;
-  }
-});
-
-// node_modules/lodash/_castFunction.js
-var require_castFunction = __commonJS({
-  "node_modules/lodash/_castFunction.js"(exports, module2) {
-    var identity = require_identity();
-    function castFunction(value) {
-      return typeof value == "function" ? value : identity;
-    }
-    module2.exports = castFunction;
-  }
-});
-
-// node_modules/lodash/forOwn.js
-var require_forOwn = __commonJS({
-  "node_modules/lodash/forOwn.js"(exports, module2) {
-    var baseForOwn = require_baseForOwn();
-    var castFunction = require_castFunction();
-    function forOwn2(object, iteratee) {
-      return object && baseForOwn(object, castFunction(iteratee));
-    }
-    module2.exports = forOwn2;
-  }
-});
-
-// node_modules/lodash/fp/forOwn.js
-var require_forOwn2 = __commonJS({
-  "node_modules/lodash/fp/forOwn.js"(exports, module2) {
-    var convert = require_convert();
-    var func = convert("forOwn", require_forOwn());
-    func.placeholder = require_placeholder();
-    module2.exports = func;
-  }
-});
-
-// node_modules/lodash/fp/get.js
-var require_get2 = __commonJS({
-  "node_modules/lodash/fp/get.js"(exports, module2) {
-    var convert = require_convert();
-    var func = convert("get", require_get());
     func.placeholder = require_placeholder();
     module2.exports = func;
   }
@@ -7654,21 +7571,21 @@ function buildCheckerReader(input) {
                     stack.push({
                       infiniteLoopTracker,
                       streamReadersWithGetters: streamReadersWithGetters.map(function(_a2, j) {
-                        var reader = _a2.reader, get2 = _a2.get;
+                        var reader = _a2.reader, get = _a2.get;
                         return {
                           get: j === i2 ? once(function() {
                             return reader.next();
-                          }) : get2,
+                          }) : get,
                           reader
                         };
                       }),
                       trail
                     });
                     var newStreamReadersWithGetters = streamReadersWithGetters.map(function(_a2, j) {
-                      var reader = _a2.reader, get2 = _a2.get;
+                      var reader = _a2.reader, get = _a2.get;
                       var newReader = j === i2 ? buildForkableReader(value_1.reader()) : fork(reader);
                       return {
-                        get: j < i2 ? get2 : once(function() {
+                        get: j < i2 ? get : once(function() {
                           return newReader.next();
                         }),
                         reader: newReader
@@ -8303,11 +8220,14 @@ function isSafe(regexp, config) {
 }
 
 // src/shared/checkForRedosError.ts
-var checkForRedosError = (regex) => !isSafe(new RegExp(`${regex}`)).safe && [
-  {
-    message: `${regex} This pattern is not safe from ReDoS attacks.`
-  }
-];
+var checkForRedosError = (regex) => {
+  console.log(!isSafe(new RegExp(`${regex}`)).safe, "really");
+  return !isSafe(new RegExp(`${regex}`)).safe ? [
+    {
+      message: `${regex} This pattern is not safe from ReDoS attacks.`
+    }
+  ] : [];
+};
 var checkForRedosError_default = checkForRedosError;
 
 // src/functions/validateSchemaPropertyPatternRegex.ts
@@ -8318,33 +8238,6 @@ var validateSchemaPropertyPatternRegex = (param) => {
   }
 };
 var validateSchemaPropertyPatternRegex_default = validateSchemaPropertyPatternRegex;
-
-// src/functions/validateSchemaArrayPropertyPatternRegex.ts
-var forOwn = require_forOwn2();
-var get = require_get2();
-var isNil2 = require_isNil2();
-var checkForUnsafePattern = (property) => {
-  const regex = get("pattern", property);
-  !isNil2(regex) && checkForRedosError_default(regex);
-};
-var validateSchemaArrayPropertyPatternRegex = (param) => {
-  if (get("type", param) === "array") {
-    forOwn((item) => {
-      if (get("type", item) === "array") {
-        console.log(item, "item");
-        const arrayItems = get(item, "items");
-        if (get("type", arrayItems) === "object") {
-          return forOwn((objectItem) => checkForUnsafePattern(objectItem), arrayItems);
-        } else {
-          return checkForUnsafePattern(arrayItems);
-        }
-      } else {
-        return checkForUnsafePattern(item);
-      }
-    }, param.items.properties);
-  }
-};
-var validateSchemaArrayPropertyPatternRegex_default = validateSchemaArrayPropertyPatternRegex;
 
 // node_modules/@stoplight/types/dist/index.mjs
 var HttpParamStyles;
@@ -8408,12 +8301,21 @@ var ruleset_default = {
       }
     },
     "unsafe-pattern-regex-components-schema-array-property": {
-      description: "Check for possible ReDos regex patterns in components schemas with array properties",
-      given: "$.components.schemas..properties[*]",
+      description: "Check for possible ReDos regex patterns in components schemas with array items that are not objects",
+      given: '$.components.schemas..properties[?(@ && @.type == "array" && @.items && @.items.properties == null)].items',
       message: "{{error}}",
       severity: DiagnosticSeverity.Error,
       then: {
-        function: validateSchemaArrayPropertyPatternRegex_default
+        function: validateSchemaPropertyPatternRegex_default
+      }
+    },
+    "unsafe-pattern-regex-components-schema-array-object-property": {
+      description: "Check for possible ReDos regex patterns in components schemas with array items that are objects",
+      given: '$.components.schemas..properties[?(@ && @.type=="array")].items.properties[*]',
+      message: "{{error}}",
+      severity: DiagnosticSeverity.Error,
+      then: {
+        function: validateSchemaPropertyPatternRegex_default
       }
     },
     "unsafe-pattern-regex-components-headers-property": {

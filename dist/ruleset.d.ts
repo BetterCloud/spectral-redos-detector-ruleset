@@ -20,6 +20,15 @@ declare const _default: {
                 function: (param: any) => any;
             };
         };
+        "unsafe-pattern-regex-components-schema-array-object-property": {
+            description: string;
+            given: string;
+            message: string;
+            severity: DiagnosticSeverity;
+            then: {
+                function: (param: any) => any;
+            };
+        };
         "unsafe-pattern-regex-components-headers-property": {
             description: string;
             given: string;

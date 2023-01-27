@@ -10,10 +10,10 @@ testRule("unsafe-pattern-regex-components-schema-property", [
       components: {
         schemas: {
           Pet: {
+            type: "object",
+            required: ["breedId"],
             properties: {
-              name: "name",
-              required: true,
-              schema: {
+              breed: {
                 type: "string",
                 pattern: "^([a-b]*)([a-c]*)$"
               },
@@ -26,19 +26,42 @@ testRule("unsafe-pattern-regex-components-schema-property", [
       {
         code: "unsafe-pattern-regex-components-schema-property",
         message: "^([a-b]*)([a-c]*)$ This pattern is not safe from ReDoS attacks.",
-        path: ["components", "schemas", "Pet", "properties", "schema"],
+        path: ["components", "schemas", "Pet", "properties", "breed"],
         range: {
           end: {
-            "character": 176,
+            "character": 184,
             "line": 0,
           },
           start: {
-            "character": 129,
+            "character": 137,
             "line": 0,
           },
         },
         severity: DiagnosticSeverity.Error,
       }
     ]
+  },
+
+  {
+    name: "valid case",
+    document: {
+      openapi: "3.1.0",
+      info: { version: "1.0" },
+      components: {
+        schemas: {
+          Pet: {
+            type: "object",
+            required: ["breedId"],
+            properties: {
+              breed: {
+                type: "string",
+                pattern: "^([a-c]*)d([a-c]*)$"
+              },
+            },
+          }
+        }
+      }
+    },
+    errors: []
   }
 ])

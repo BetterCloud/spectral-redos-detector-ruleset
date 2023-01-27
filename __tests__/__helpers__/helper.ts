@@ -27,10 +27,12 @@ export default (ruleName: RuleName, tests: Scenario): void => {
     for (const testCase of tests) {
       (concurrent ? it.concurrent : it)(testCase.name, async () => {
         const s = createWithRules([ruleName]);
+        // console.log(s, 's')
         const doc =
           testCase.document instanceof Document
             ? testCase.document
             : JSON.stringify(testCase.document);
+        console.log(doc, 'doc')
         const errors = await s.run(doc);
         expect(errors.filter(({ code }) => code === ruleName)).toEqual(
           testCase.errors.map(

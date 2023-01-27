@@ -1,6 +1,7 @@
 import validateSchemaPropertyPatternRegex from "./functions/validateSchemaPropertyPatternRegex";
-import validateSchemaArrayPropertyPatternRegex from "./functions/validateSchemaArrayPropertyPatternRegex";
+// import validateSchemaArrayPropertyPatternRegex from "./functions/validateSchemaArrayPropertyPatternRegex";
 import { DiagnosticSeverity } from "@stoplight/types";
+// import { oas3_1 } from "@stoplight/spectral-formats"
 export default {
     rules: {
         "unsafe-pattern-regex-components-schema-property": {
@@ -13,12 +14,21 @@ export default {
             }
         },
         "unsafe-pattern-regex-components-schema-array-property": {
-            description: "Check for possible ReDos regex patterns in components schemas with array properties",
-            given: '$.components.schemas..properties[*]',
+            description: "Check for possible ReDos regex patterns in components schemas with array items that are not objects",
+            given: '$.components.schemas..properties[?(@ && @.type == "array" && @.items && @.items.properties == null)].items',
             message: '{{error}}',
             severity: DiagnosticSeverity.Error,
             then: {
-                function: validateSchemaArrayPropertyPatternRegex
+                function: validateSchemaPropertyPatternRegex
+            }
+        },
+        "unsafe-pattern-regex-components-schema-array-object-property": {
+            description: "Check for possible ReDos regex patterns in components schemas with array items that are objects",
+            given: '$.components.schemas..properties[?(@ && @.type=="array")].items.properties[*]',
+            message: '{{error}}',
+            severity: DiagnosticSeverity.Error,
+            then: {
+                function: validateSchemaPropertyPatternRegex
             }
         },
         "unsafe-pattern-regex-components-headers-property": {
