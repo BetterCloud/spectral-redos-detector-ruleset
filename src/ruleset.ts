@@ -1,7 +1,6 @@
 import validateSchemaPropertyPatternRegex from "./functions/validateSchemaPropertyPatternRegex";
-// import validateSchemaArrayPropertyPatternRegex from "./functions/validateSchemaArrayPropertyPatternRegex";
 import { DiagnosticSeverity } from "@stoplight/types";
-// import { oas3_1 } from "@stoplight/spectral-formats"
+
 export default {
     rules: {
         "unsafe-pattern-regex-components-schema-property": {

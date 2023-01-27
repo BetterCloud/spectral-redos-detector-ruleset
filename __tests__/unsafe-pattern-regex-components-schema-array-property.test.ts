@@ -17,17 +17,17 @@ testRule("unsafe-pattern-regex-components-schema-array-property", [
                 format: 'uuid',
                 pattern: '^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$',
                 maxLength: 36,
-                readOnly: true
+                readOnly: true,
               },
               name: {
                 type: 'string',
                 pattern: '^[a-zA-Z]+(?:[\\s.]+[a-zA-Z]+)*$',
-                maxLength: 50
+                maxLength: 50,
               },
               address: {
                 type: 'string',
                 pattern: '^\\d{1,5}\\s\\w.\\s(\\b\\w*\\b\\s){1,2}\\w*\\.$',
-                maxLength: 50
+                maxLength: 50,
               },
               services: {
                 type: 'array',
@@ -36,7 +36,7 @@ testRule("unsafe-pattern-regex-components-schema-array-property", [
                 items: {
                   type: 'string',
                   maxLength: 30,
-                  pattern: '^[a-zA-Z]+(?:[\\s.]+[a-zA-Z]+)*$'
+                  pattern: '^[a-zA-Z]+(?:[\\s.]+[a-zA-Z]+)*$',
                 },
               },
             },
