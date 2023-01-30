@@ -3460,7 +3460,7 @@ var checkForRedosError = (regex) => {
     {
       message: `${regex} This pattern is not safe from ReDoS attacks.`
     }
-  ] : [];
+  ] : regex;
 };
 var checkForRedosError_default = checkForRedosError;
 
