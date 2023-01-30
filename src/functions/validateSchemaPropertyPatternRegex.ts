@@ -6,14 +6,12 @@ import {
 } from "@stoplight/spectral-core";
 
 
-export default createRulesetFunction({ input: null, options: {} },
+export default createRulesetFunction({ input: null, options: {}, },
   function validateSchemaPropertyPatternRegex(input: any): IFunctionResult[] {
     if (!isNil(input.pattern)) {
-      return checkForRedosError(input.pattern)
+      return checkForRedosError(input.pattern);
     } else {
-      return []
+      return [];
     }
   }
-)
-
-// export default validateSchemaPropertyPatternRegex
+);
