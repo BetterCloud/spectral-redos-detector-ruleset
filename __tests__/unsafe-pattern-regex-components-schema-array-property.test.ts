@@ -70,4 +70,39 @@ testRule("unsafe-pattern-regex-components-schema-array-property", [
       },
     ],
   },
+
+  {
+    name: "valid case",
+    document: {
+      openapi: "3.1.0",
+      info: { version: "1.0" },
+      components: {
+        schemas: {
+          Vet: {
+            type: "object",
+            properties: {
+              services: {
+                type: 'array',
+                minItems: 0,
+                maxItems: 100,
+                items: {
+                  type: 'string',
+                  maxLength: 30,
+                  pattern: '^([a-c]*)d([a-c]*)$',
+                },
+              },
+            },
+            required: ['vetId'],
+            example: {
+              vetId: '23b22425-8a40-4cdf-a898-2867befe4128',
+              name: 'Bark and Meow Vet',
+              address: '432 N. Tejon St.',
+              services: ['Boarding', 'Wellness', 'Neuter and Spay'],
+            },
+          },
+        },
+      },
+    },
+    errors: [],
+  },
 ]);

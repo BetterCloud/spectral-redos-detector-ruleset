@@ -18,7 +18,7 @@ testRule("unsafe-pattern-regex-path-parameter-property", [
                 schema: {
                   type: "string",
                   format: "uuid",
-                  pattern: '^([a-c]*)d([a-c]*)$',
+                  pattern: '^([a-b]*)([a-c]*)$',
                 },
               },
             ],
@@ -30,14 +30,14 @@ testRule("unsafe-pattern-regex-path-parameter-property", [
       {
         code: "unsafe-pattern-regex-path-parameter-property",
         message: "^([a-b]*)([a-c]*)$ This pattern is not safe from ReDoS attacks.",
-        path: ["paths", "/pets", "get", "parameters", "name", "schema"],
+        path: ["paths", "/pets", "get", "parameters", "0", "schema"],
         range: {
           end: {
-            "character": 239,
+            "character": 196,
             "line": 0,
           },
           start: {
-            "character": 161,
+            "character": 133,
             "line": 0,
           },
         },
