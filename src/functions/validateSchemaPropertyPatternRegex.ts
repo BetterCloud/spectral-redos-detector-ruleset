@@ -1,12 +1,19 @@
 import isNil = require("lodash/fp/isNil");
 import checkForRedosError from '../shared/checkForRedosError';
+import {
+  createRulesetFunction,
+  IFunctionResult,
+} from "@stoplight/spectral-core";
 
-const validateSchemaPropertyPatternRegex = (param: any): any => {
-  if (!isNil(param.pattern)) {
-    return checkForRedosError(param.pattern)
-  } else {
-    return []
+
+export default createRulesetFunction({ input: null, options: {} },
+  function validateSchemaPropertyPatternRegex(input: any): IFunctionResult[] {
+    if (!isNil(input.pattern)) {
+      return checkForRedosError(input.pattern)
+    } else {
+      return []
+    }
   }
-}
+)
 
-export default validateSchemaPropertyPatternRegex
+// export default validateSchemaPropertyPatternRegex
