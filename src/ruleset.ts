@@ -10,7 +10,7 @@ export default {
             severity: DiagnosticSeverity.Error,
             then: {
                 function: validateSchemaPropertyPatternRegex
-            }
+            },
         },
         "unsafe-pattern-regex-components-schema-array-property": {
             description: "Check for possible ReDos regex patterns in components schemas with array items that are not objects",
@@ -19,7 +19,7 @@ export default {
             severity: DiagnosticSeverity.Error,
             then: {
                 function: validateSchemaPropertyPatternRegex
-            }
+            },
         },
         "unsafe-pattern-regex-components-schema-array-object-property": {
             description: "Check for possible ReDos regex patterns in components schemas with array items that are objects",
@@ -28,7 +28,7 @@ export default {
             severity: DiagnosticSeverity.Error,
             then: {
                 function: validateSchemaPropertyPatternRegex
-            }
+            },
         },
         "unsafe-pattern-regex-components-headers-property": {
             description: "Check for possible ReDos regex patterns in components headers schemas",
@@ -37,7 +37,7 @@ export default {
             severity: DiagnosticSeverity.Error,
             then: {
                 function: validateSchemaPropertyPatternRegex
-            }
+            },
         },
         "unsafe-pattern-regex-path-parameter-property": {
             description: "Check regex patterns in path parameters",
@@ -46,7 +46,7 @@ export default {
             severity: DiagnosticSeverity.Error,
             then: {
                 function: validateSchemaPropertyPatternRegex
-            }
-        }
-    }
-}
+            },
+        },
+    },
+};
