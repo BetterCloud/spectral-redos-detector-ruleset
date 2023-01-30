@@ -7,7 +7,7 @@ const checkForRedosError = (regex: string): any => {
         message: `${regex} This pattern is not safe from ReDoS attacks.`,
       },
     ]
-    : regex
+    : [];
 };
 
 export default checkForRedosError;
