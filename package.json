@@ -54,7 +54,8 @@
       "redos-detector"
     ],
     "external": [
-      "typescript"
+      "typescript",
+      "@stoplight/spectral-core"
     ],
     "footer": {
       "js": "module.exports = module.exports.default;"
