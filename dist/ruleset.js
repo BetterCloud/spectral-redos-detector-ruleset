@@ -3590,15 +3590,6 @@ var ruleset_default = {
       then: {
         function: validateSchemaPropertyPatternRegex_default
       }
-    },
-    "unsafe-pattern-regex-path-parameter-property": {
-      description: "Check regex patterns in path parameters",
-      given: "$.paths.*.*.parameters[*].schema",
-      message: "{{error}}",
-      severity: DiagnosticSeverity.Error,
-      then: {
-        function: validateSchemaPropertyPatternRegex_default
-      }
     }
   }
 };
