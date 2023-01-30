@@ -50,8 +50,7 @@
     ],
     "sourcemap": true,
     "noExternal": [
-      "@stoplight/types",
-      "redos-detector"
+      "@stoplight/types"
     ],
     "external": [
       "typescript",
