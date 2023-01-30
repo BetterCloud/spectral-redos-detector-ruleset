@@ -1,3 +1,4 @@
+import * as _stoplight_spectral_core from '@stoplight/spectral-core';
 import { DiagnosticSeverity } from '@stoplight/types';
 
 declare const _default: {
@@ -8,7 +9,7 @@ declare const _default: {
             message: string;
             severity: DiagnosticSeverity;
             then: {
-                function: (param: any) => any;
+                function: _stoplight_spectral_core.RulesetFunctionWithValidator<any, unknown>;
             };
         };
         "unsafe-pattern-regex-components-schema-array-property": {
@@ -17,7 +18,7 @@ declare const _default: {
             message: string;
             severity: DiagnosticSeverity;
             then: {
-                function: (param: any) => any;
+                function: _stoplight_spectral_core.RulesetFunctionWithValidator<any, unknown>;
             };
         };
         "unsafe-pattern-regex-components-schema-array-object-property": {
@@ -26,7 +27,7 @@ declare const _default: {
             message: string;
             severity: DiagnosticSeverity;
             then: {
-                function: (param: any) => any;
+                function: _stoplight_spectral_core.RulesetFunctionWithValidator<any, unknown>;
             };
         };
         "unsafe-pattern-regex-components-headers-property": {
@@ -35,7 +36,7 @@ declare const _default: {
             message: string;
             severity: DiagnosticSeverity;
             then: {
-                function: (param: any) => any;
+                function: _stoplight_spectral_core.RulesetFunctionWithValidator<any, unknown>;
             };
         };
         "unsafe-pattern-regex-path-parameter-property": {
@@ -44,7 +45,7 @@ declare const _default: {
             message: string;
             severity: DiagnosticSeverity;
             then: {
-                function: (param: any) => any;
+                function: _stoplight_spectral_core.RulesetFunctionWithValidator<any, unknown>;
             };
         };
     };

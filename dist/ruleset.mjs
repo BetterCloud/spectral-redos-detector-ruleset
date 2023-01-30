@@ -4739,6 +4739,11 @@ var require_isNil2 = __commonJS({
   }
 });
 
+// src/functions/validateSchemaPropertyPatternRegex.ts
+import {
+  createRulesetFunction
+} from "@stoplight/spectral-core";
+
 // node_modules/redos-detector/dist/redos-detector.es.js
 var __assign = function() {
   __assign = Object.assign || function __assign2(t) {
@@ -8207,12 +8212,16 @@ var checkForRedosError_default = checkForRedosError;
 
 // src/functions/validateSchemaPropertyPatternRegex.ts
 var isNil = require_isNil2();
-var validateSchemaPropertyPatternRegex = (param) => {
-  if (!isNil(param.pattern)) {
-    return checkForRedosError_default(param.pattern);
+var validateSchemaPropertyPatternRegex_default = createRulesetFunction(
+  { input: null, options: {} },
+  function validateSchemaPropertyPatternRegex(input) {
+    if (!isNil(input.pattern)) {
+      return checkForRedosError_default(input.pattern);
+    } else {
+      return [];
+    }
   }
-};
-var validateSchemaPropertyPatternRegex_default = validateSchemaPropertyPatternRegex;
+);
 
 // node_modules/@stoplight/types/dist/index.mjs
 var HttpParamStyles;
