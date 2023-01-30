@@ -8210,6 +8210,8 @@ var isNil = require_isNil2();
 var validateSchemaPropertyPatternRegex = (param) => {
   if (!isNil(param.pattern)) {
     return checkForRedosError_default(param.pattern);
+  } else {
+    return [];
   }
 };
 var validateSchemaPropertyPatternRegex_default = validateSchemaPropertyPatternRegex;
