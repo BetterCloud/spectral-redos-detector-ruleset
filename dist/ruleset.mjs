@@ -3557,15 +3557,6 @@ var ruleset_default = {
       then: {
         function: validateSchemaPropertyPatternRegex_default
       }
-    },
-    "unsafe-pattern-regex-components-headers-property": {
-      description: "Check for possible ReDos regex patterns in components headers schemas",
-      given: "$.components.headers..schema",
-      message: "{{error}}",
-      severity: DiagnosticSeverity.Error,
-      then: {
-        function: validateSchemaPropertyPatternRegex_default
-      }
     }
   }
 };
