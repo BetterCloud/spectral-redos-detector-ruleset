@@ -1,4 +1,4 @@
-// import isNil = require("lodash/fp/isNil");
+import isNil = require("lodash/fp/isNil");
 import checkForRedosError from "../shared/checkForRedosError";
 import {
   createRulesetFunction,
@@ -8,7 +8,7 @@ import {
 export default createRulesetFunction(
   { input: null, options: {} },
   function validateSchemaPropertyPatternRegex(input: any): IFunctionResult[] {
-    if (input.pattern !== undefined || null) {
+    if (!isNil(input.pattern)) {
       return checkForRedosError(input.pattern);
     } else {
       return [];
