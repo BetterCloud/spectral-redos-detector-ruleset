@@ -1,4 +1,5 @@
 import validateSchemaPropertyPatternRegex from "./functions/validateSchemaPropertyPatternRegex";
+import validatePathParametersPatternRegex from "./functions/validatePathParametersPatternRegex";
 import { DiagnosticSeverity } from "@stoplight/types";
 
 export default {
@@ -41,11 +42,11 @@ export default {
         },
         "unsafe-pattern-regex-path-parameter-property": {
             description: "Check regex patterns in path parameters",
-            given: '$.paths.*.*.parameters[*].schema',
+            given: '$',
             message: '{{error}}',
             severity: DiagnosticSeverity.Error,
             then: {
-                function: validateSchemaPropertyPatternRegex
+                function: validatePathParametersPatternRegex
             }
         }
     }

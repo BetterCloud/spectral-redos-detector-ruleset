@@ -4726,10 +4726,10 @@ var require_convert = __commonJS({
 // node_modules/lodash/isNil.js
 var require_isNil = __commonJS({
   "node_modules/lodash/isNil.js"(exports, module2) {
-    function isNil2(value) {
+    function isNil3(value) {
       return value == null;
     }
-    module2.exports = isNil2;
+    module2.exports = isNil3;
   }
 });
 
@@ -8245,6 +8245,50 @@ var validateSchemaPropertyPatternRegex_default = (0, import_spectral_core.create
   }
 );
 
+// src/functions/validatePathParametersPatternRegex.ts
+var import_spectral_core2 = require("@stoplight/spectral-core");
+var isNil2 = require_isNil2();
+var getAllOperations = function* (paths) {
+  if (typeof paths !== "object") {
+    return;
+  }
+  const operation = { path: "", operation: "", operationObject: "" };
+  for (const idx of Object.keys(paths)) {
+    const path = paths[idx];
+    if (typeof path === "object") {
+      operation.path = idx;
+      for (const httpMethod of Object.keys(path)) {
+        if (typeof path[httpMethod] === "object") {
+          operation.operation = httpMethod;
+          operation.operationObject = path[httpMethod];
+          yield operation;
+        }
+      }
+    }
+  }
+};
+var validatePathParametersPatternRegex_default = (0, import_spectral_core2.createRulesetFunction)(
+  { input: null, options: {} },
+  function validateSchemaPropertyPatternRegex2(input) {
+    const errorList = [];
+    for (const { path, operation: httpMethod, operationObject: methodObject } of getAllOperations(input.paths)) {
+      if (!isNil2(methodObject.parameters)) {
+        methodObject.parameters.forEach((param) => {
+          if (!isNil2(param.schema)) {
+            if (!isNil2(param.schema.pattern) && !isSafe(new RegExp(`${param.schema.pattern}`)).safe) {
+              errorList.push({
+                message: `${param.schema.pattern} This pattern is not safe from ReDoS attacks.`,
+                path: ["paths", path, httpMethod, "parameters"]
+              });
+            }
+          }
+        });
+      }
+    }
+    return errorList;
+  }
+);
+
 // node_modules/@stoplight/types/dist/index.mjs
 var HttpParamStyles;
 (function(HttpParamStyles2) {
@@ -8335,11 +8379,11 @@ var ruleset_default = {
     },
     "unsafe-pattern-regex-path-parameter-property": {
       description: "Check regex patterns in path parameters",
-      given: "$.paths.*.*.parameters[*].schema",
+      given: "$",
       message: "{{error}}",
       severity: DiagnosticSeverity.Error,
       then: {
-        function: validateSchemaPropertyPatternRegex_default
+        function: validatePathParametersPatternRegex_default
       }
     }
   }
